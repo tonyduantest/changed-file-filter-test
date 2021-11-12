@@ -1,0 +1,20 @@
+name: "build-test"
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+
+jobs:
+  test-1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: tony84727/changed-file-filter@v0.2.0
+        id: filter
+        with:
+          filters: |
+            markdowns:
+              - '*.md'
+      - name: Check Output
+        run: "echo ${{ steps.filter.outputs.markdowns_files }}"
