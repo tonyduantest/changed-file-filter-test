@@ -1,6 +1,6 @@
 name: "build-test"
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
   push:
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: git rev-parse HEAD
       - uses: tony84727/changed-file-filter@v0.2.0
         id: filter
         with:
